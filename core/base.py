@@ -8,7 +8,7 @@ class Base(object):
         # initialize all pygame modules
         pygame.init()
         # width and height of window
-        screenSize = (512,512)
+        screenSize = (1024, 1024)
         # indicate rendering options
         displayFlags = pygame.DOUBLEBUF | pygame.OPENGL
         # create and display the window
