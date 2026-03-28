@@ -1,0 +1,22 @@
+# Python - pliki tymczasowe i skompilowane
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Środowiska wirtualne (jeśli zaczniesz ich używać)
+venv/
+env/
+ENV/
+
+# Pliki edytorów i IDE
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Systemowe
+.DS_Store
+Thumbs.db
+
+# Pliki logów i błędy
+*.log
