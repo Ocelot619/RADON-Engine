@@ -46,6 +46,18 @@ def associateVariable(self, programRef, variableName):
     #    from the buffer currently bound to GL_ARRAY_BUFFER
 
     if self.dataType == "int":
-        glVertexAttribPoint(variableRef, 1, GL_INT, False, 0, None)
+        glVertexAttribPointer(variableRef, 1, GL_INT, False, 0, None)
     elif self.dataType == "float":
-        glVertexAttribPoint(variableRef, 1, GL_FLOAT, False, 0 None)
+        glVertexAttribPointer(variableRef, 1, GL_FLOAT, False, 0, None)
+    elif self.dataType == "vec2":
+        glVertexAttribPointer(variableRef, 2, GL_FLOAT, False, 0, None)
+    elif self.dataType == "vec3":
+        glVertexAttribPointer(variableRef, 3, GL_FLOAT, False, 0, None)
+    elif self.dataType == "vec4":
+        glVertexAttribPointer(variableRef, 4, GL_FLOAT, False, 0, None)
+
+    else:
+        raise Exception("Unknow attrib type " + self.dataType)
+
+    # indicate data should be streamed to variable from buffer
+    glEnableVertexAttribArray( variableRef )
