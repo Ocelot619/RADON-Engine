@@ -55,7 +55,7 @@ class Test(Base):
                      [0.0, 1.0, 0.0],
                      [0.0, 0.0, 1.0],
                      [0.5, 0.0, 1.0]]
-                     
+
         colorAttribute = Attribute("vec3" , colorData)
         colorAttribute.associateVariable(self.programRef, "vertexColor")
 
@@ -63,7 +63,7 @@ class Test(Base):
     def update(self):
 
         glUseProgram( self.programRef)
-        glDrawArrays( GL_POINTS, 0 , self.vertexCount)
+        glDrawArrays( GL_TRIANGLE_FAN, 0 , self.vertexCount)
 
 
 # create instance and run 
