@@ -14,7 +14,7 @@ class Test(Base):
         in vec3 position;
         void main()
         {
-        gl_Position = Vec4(position.x, position.y, position.z, 1.0);
+        gl_Position = vec4(position.x, position.y, position.    z, 1.0);
         }
         """
 
@@ -39,13 +39,20 @@ class Test(Base):
                        [0.4, 0.6, 0.0], # 2
                        [-0.4, 0.6, 0.0], # 3
                        [-0.8, 0.0, 0.0], # 4
-                       [-0.4. -0.6, 0.0], # 5
+                       [-0.4, -0.6, 0.0], # 5
                        [0.4, -0.6, 0.0 ]] # 6
 
         positionAttribute = Attribute("vec3", positionData)
-        positionAttribute.associateVariable(programRef, "position")
+        positionAttribute.associateVariable(self.programRef, "position")
 
+
+        self.vertexCount = len(positionData)
     def update(self):
 
         glUseProgram( self.programRef)
-        glDrawArrays( GL_POINTS, 0 , 6)
+        glDrawArrays( GL_POINTS, 0 , self.vertexCount)
+
+
+# create instance and run 
+
+Test().run()
