@@ -30,7 +30,6 @@ class OpenGLUtils(object):
             errorMessage = "\n" + errorMessage.decode("utf-8")
             #raise exception
             raise Exception(errorMessage)
-
         return shaderRef
 
 
