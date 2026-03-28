@@ -6,10 +6,10 @@ from OpenGL import GL
 class OpenGLUtils(object):
 
     @staticmethod
-    def initializeShader(shaderCode, shaderType)
+    def initializeShader(shaderCode, shaderType):
         # OpenGL Version Specification and requirements
         extension = "#extension GL_ARB_shading_language_420pack: require \n"
-        shaderCode = "#version 130 \n + extension + shaderCode"
+        shaderCode = "#version 130 \n" + extension + shaderCode
 
         # create empty shader object and return reference value
         shaderRef = GL.glCreateShader(shaderType)
@@ -19,11 +19,11 @@ class OpenGLUtils(object):
         GL.glCompileShader(shaderRef)
 
         # query whether compilation was succesful
-        compileSuccess = Gl.glGetShaderiv(shaderRef, GL.GL_COMPILE_STATUS)
+        compileSuccess = GL.glGetShaderiv(shaderRef, GL.GL_COMPILE_STATUS)
 
         if not compileSuccess:
             # retreive error mesage
-            errorMessage = GL.glGetShaderInfoLog(shaderRef, GL.GL_COMPILE_STATUS)
+            errorMessage = GL.glGetShaderInfoLog(shaderRef)
             # free memory 
             GL.glDeleteShader(shaderRef)
             # convert byte stream to str message
@@ -50,14 +50,14 @@ class OpenGLUtils(object):
         # link vertex shader to fragment shader
         GL.glLinkProgram(programRef)
         # query if linking was succesful 
-        linkinSucces = GL.glGetProgramiv(programRef, GL.GL_LINK_STATUS)
+        linkingSucces = GL.glGetProgramiv(programRef, GL.GL_LINK_STATUS)
 
-        if not linkinSucces: 
+        if not linkingSucces: 
             # retreive error message 
             errorMessage = GL.glGetProgramInfoLog(programRef)
             #convert byte to utf 
-            errorMessage = "\n" + errorMessag.decode("utf-8")
-            raiseException(errorMessage)
+            errorMessage = "\n" + errorMessage.decode("utf-8")
+            raise Exception(errorMessage)
             #free memory 
             GL.glDeleteProgram(programRef)
 

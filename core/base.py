@@ -1,17 +1,18 @@
 import pygame
 import sys
-from .input import Input
+from core.input import Input
+
 
 class Base(object):
     def __init__(self):
         # initialize all pygame modules
         pygame.init()
         # width and height of window
-        screenSize = (512, 512)
+        screenSize = (512,512)
         # indicate rendering options
         displayFlags = pygame.DOUBLEBUF | pygame.OPENGL
         # create and display the window
-        self.screen = pygame.display.set_mode(screenSize, displayFlags)
+        self.screen = pygame.display.set_mode(screenSize, displayFlags )
         # set the text that appears in the window 
         pygame.display.set_caption("Graphics window")
         # determines if main loop is running 
@@ -31,6 +32,7 @@ class Base(object):
         pass
 
     def run(self):
+
         ## startup ##
         self.initialize()
 
@@ -54,6 +56,8 @@ class Base(object):
             # pause if necessary to achieve 60 FPS
             self.clock.tick(60)
 
+
         ## shutdown ##
         pygame.quit()
         sys.exit()
+
