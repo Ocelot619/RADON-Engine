@@ -29,6 +29,7 @@ class Test(Base):
 
         # render settings
         glPointSize(16)
+        glLineWidth(5)
 
         # set up  VAOS (vertex array objects)
         vaoRef = glGenVertexArrays(1)
@@ -50,7 +51,7 @@ class Test(Base):
     def update(self):
 
         glUseProgram( self.programRef)
-        glDrawArrays( GL_POINTS, 0 , self.vertexCount)
+        glDrawArrays( GL_LINE_LOOP, 0 , self.vertexCount)
 
 
 # create instance and run 
