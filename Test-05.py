@@ -48,7 +48,7 @@ class Test(Base):
         positionDataSquare = [[0.8,0.8,0.0],
                            [0.8,0.2,0.0],
                            [0.2,0.2,0.0],
-                           [0.2, 0.8, 0.0]]
+                           [0.2, 0.8, 0.1]]
 
         positionAttributeSquare = Attribute("vec3", positionDataSquare)
         positionAttributeSquare.associateVariable(self.programRef, "position")
