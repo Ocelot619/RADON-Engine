@@ -11,31 +11,17 @@ class Test(Base):
     def initialize(self):
         print("Initializing Program")
 
-        vsCode = """
-        in vec3 position;
-        uniform vec3 translation;
-        void main()
-        {
-             vec3 position = position + translation;
-             gl_position = vec4(pos.x, pos.y, pos.z, 1.0);
-        }
-        """
-
-        fsCode = """
-        uniform vec3 baseColor;
-        void main()
-        {
-            gl_FragColor = vec4(baseColor.r, baseColor.g, baseColor.b, 1.0);
-        }
-        """
-
+    def update(self):
         
 
 
 
 
 
-    def update(self):
+
+
+
+
 
 # running program
 
