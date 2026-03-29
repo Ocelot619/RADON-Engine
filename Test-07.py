@@ -16,8 +16,8 @@ class Test(Base):
         uniform vec3 translation;
         void main()
         {
-             vec3 position = position + translation;
-             gl_Position = vec4(position.x, position.y, position.z, 1.0);
+             vec3 newPos = position + translation;
+             gl_Position = vec4(newPos, 1.0);
         }
         """
 
@@ -65,11 +65,12 @@ class Test(Base):
 
     def update(self):
         glUseProgram(self.programRef)
+        # clearing screen before rendering next 
         glClear(GL_COLOR_BUFFER_BIT)
-        # first triangle
+        # draw first triangle
         self.translation1.uploadData()
         self.baseColor1.uploadData()
-        glDrawArrays(GL_TRIANGLES,0 , self.vertexCount)
+        glDrawArrays(GL_TRIANGLES, 0 , self.vertexCount)
 
         # second triangle 
         self.translation2.uploadData()
