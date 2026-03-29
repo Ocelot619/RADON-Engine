@@ -17,7 +17,7 @@ class Test(Base):
         void main()
         {
              vec3 position = position + translation;
-             gl_position = vec4(pos.x, pos.y, pos.z, 1.0);
+             gl_Position = vec4(position.x, position.y, position.z, 1.0);
         }
         """
 
@@ -29,13 +29,52 @@ class Test(Base):
         }
         """
 
+        self.programRef = OpenGLUtils.initializeProgram(vsCode, fsCode)
+
+        # vertex array object
+        vaoRef = glGenVertexArrays(1)
+        glBindVertexArray(vaoRef) 
+
+        # set up attributes
+
+        positionData = [[0.0,   0.2, 0.0], # 1
+                        [0.2,  -0.2, 0.0], # 2
+                        [-0.2, -0.2, 0.0]] # 3
         
+        positionAttribute = Attribute("vec3", positionData)
+        positionAttribute.associateVariable(self.programRef, "position")
+        self.vertexCount = len(positionData)
+
+        # setting up position uniforms 
+
+        self.translation1 = Uniform("vec3", [-0.5, 0.0, 0.0])
+        self.translation1.locateVariable(self.programRef, "translation")
 
 
+        self.translation2 = Uniform("vec3", [0.5, 0.0, 0.0 ])
+        self.translation2.locateVariable(self.programRef, "translation")
+
+        # setting up color uniforms 
+        self.baseColor1 = Uniform("vec3", [0.5, 0.6, 0.0])
+        self.baseColor1.locateVariable(self.programRef, "baseColor")
+
+        self.baseColor2 = Uniform("vec3", [0.0, 0.0, 1.0])
+        self.baseColor2.locateVariable(self.programRef, "baseColor")
 
 
 
     def update(self):
+        glUseProgram(self.programRef)
+        glClear(GL_COLOR_BUFFER_BIT)
+        # first triangle
+        self.translation1.uploadData()
+        self.baseColor1.uploadData()
+        glDrawArrays(GL_TRIANGLES,0 , self.vertexCount)
+
+        # second triangle 
+        self.translation2.uploadData()
+        self.baseColor2.uploadData()
+        glDrawArrays(GL_TRIANGLES,0 , self.vertexCount)
 
 # running program
 

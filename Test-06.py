@@ -49,6 +49,7 @@ class Test(Base):
 
         positionAttribute = Attribute("vec3", positionData)
         positionAttribute.associateVariable(self.programRef, "position")
+        
         colorData = [[1.0, 0.0, 0.0],
                      [1.0, 0.5, 0.0],
                      [1.0, 1.0, 0.0],
@@ -60,6 +61,7 @@ class Test(Base):
         colorAttribute.associateVariable(self.programRef, "vertexColor")
 
         self.vertexCount = len(positionData)
+
     def update(self):
 
         glUseProgram( self.programRef)

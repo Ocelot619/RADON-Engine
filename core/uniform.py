@@ -1,8 +1,7 @@
 from OpenGL.GL import * 
 
 
-
-class Uniform(object)
+class Uniform(object):
 
     def __init__(self, dataType, data):
         # type of data
@@ -26,17 +25,18 @@ class Uniform(object)
         if self.variableRef == -1:
             return
 
-    if self.dataType == "int":
-        glUniform1i(self.variableRef, self.data)
-    elif self.dataType == "bool":
-        glUniform1i(self.variableRef, self.data)
-    elif self.dataType == "float":
-        glUniform1f(self.variableRef, self.data)
-    elif self.dataType == "vec2":
-        glUniform2f(self.variableRef, self.data)
-    elif self.dataType == "vec3":
-        glUniform3f(self.variableRef, self.data)
-    elif self.dataType == "vec4":
-        glUniform4f(self.variableRef, self.data)
-    else:
-        raise Exception("Unknow uniform type: " + self.dataType)
+        if self.dataType == "int":
+            glUniform1i(self.variableRef, self.data)
+        elif self.dataType == "bool":
+            glUniform1i(self.variableRef, self.data)
+        elif self.dataType == "float":
+            glUniform1f(self.variableRef, self.data)
+        elif self.dataType == "vec2":
+            glUniform2f(self.variableRef, self.data)
+        elif self.dataType == "vec3":
+            glUniform3f(self.variableRef, self.data)
+        elif self.dataType == "vec4":
+            glUniform4f(self.variableRef, self.data)
+            
+        else:
+            raise Exception("Unknow uniform type: " + self.dataType)
